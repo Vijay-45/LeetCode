@@ -1,0 +1,46 @@
+
+
+//Time Complexity - O(n)
+//Auxilary Space- O(1)
+
+
+/*
+Internal Math behing this Algorithm is  as follows:
+         -> Linked list - 1->2->3->4  Again 4 points to the 2 then loop exists
+         -> So we can say 2 is the first node of the loop 
+         -> Assume distance from the head node to the start node of the lopp as 'M' 
+         -> Assume total length of the loop as K 
+         -> As being fast at the node where they both and slow at head then they both move at same speed
+         -> fast already traversed M+K distance then both meet at the first node If the move at same speed
+         -> fast loop and move to the first node by moving m+k-k and slow moves m distance 
+*/
+
+
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head==null || head.next==null) return null;
+      //Loop Finding Logic 
+        ListNode slow=head,fast=head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow){
+                break;
+            }
+        }
+      //If there is no loop just return
+        if(fast!=slow){
+            return null;
+        }
+      //If loop exixts we make slow as head
+        slow=head;
+      //Move both the pointers at same speed when they meet again then it is the first node of the loop 
+        while(slow!=fast){
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return fast;
+
+    }
+}

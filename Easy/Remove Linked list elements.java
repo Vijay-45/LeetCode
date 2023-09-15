@@ -21,3 +21,27 @@ class Solution {
         return dummy.next;
     }
 }
+
+
+____________________________________________________________________________________________________________________________
+
+
+    //Time Complexity - O(n)
+    //Auxilary Space - O(1)
+
+    class Solution {
+    public ListNode removeElements(ListNode head, int k) {
+        ListNode dummy=new ListNode(0);
+        dummy.next=head;
+        ListNode curr=dummy;
+        while(curr!=null && curr.next!=null){
+            if(curr.next.val==k){
+                curr.next=curr.next.next;
+            }
+            else{
+                curr=curr.next;
+            }
+        }
+        return dummy.next;
+    }
+}
